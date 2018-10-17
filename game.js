@@ -17,7 +17,7 @@ target[0] = {
 
 bg.src = "background.png";
 bird.src = "bird2.png";
-bird.width = 30;
+bird.width = 35;
 bird.height = 35;
 carrot.src = "carrot.png";
 cake.src = "cake.png";
