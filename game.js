@@ -60,16 +60,7 @@ function draw() {
       });
       targets.push(targetRand());
     }
-    /*if(birdXPos + bird.width >= target[i].x 
-            && birdYPos <= target[i].x + 35 
-            && (birdYPos <= target[i].y + 35 || birdYPos + bird.height >= target[i].y + 35)){
-                points++;
-                bird.width++;
-                bird.height++;
-                target[i].x = -1000;
-                target[i].y = -1000;
-                audio.play();
-        }*/
+
     if (
       birdXPos + bird.width >= target[i].x &&
       birdXPos <= target[i].x + 35 &&
@@ -89,10 +80,9 @@ function draw() {
 
   birdYPos += grav;
   ctx.fillStyle = "#fff";
-  ctx.font = "48px"; //not visible
+  ctx.font = "48px";
   ctx.fillText("Points " + points, 10, 500);
   2;
   requestAnimationFrame(draw);
-  //console.log(target.length);
 }
 cabbage.onload = draw();
