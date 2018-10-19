@@ -65,10 +65,10 @@ function draw() {
   for (let i = 0; i < target.length; i++) {
     ctx.drawImage(targets[i], target[i].x, target[i].y, 35, 35);
     target[i].x -= targetSpeed;
-    if (target[i].x == 450 && target.length < 4) {
+    if (target[i].x == 450 && target.length < 10) {
       target.push({
         x: cvs.width,
-        y: Math.floor(Math.random() * 500) + 1
+        y: Math.floor(Math.random() * 450) + 1
       });
       targets.push(targetRand());
     }
@@ -85,11 +85,11 @@ function draw() {
     ) {
       points++;
       target[i].x = cvs.width+1000;
-      target[i].y = Math.floor(Math.random() * 500) + 1;
-      target.push({
+      target[i].y = Math.floor(Math.random() * 450) + 1;
+      /*target.push({
         x: cvs.width,
-        y: Math.floor(Math.random() * 500) + 1
-      });
+        y: Math.floor(Math.random() * 450) + 1
+      });*/
       targets.push(targetRand());
       //target.splice(i, 1);
       //audio.play();
