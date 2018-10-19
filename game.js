@@ -70,7 +70,7 @@ function draw() {
       points++;
       //target[i].x = -1000;
       //target[i].y = -1000;
-      //target.splice(i, 1);
+      target.splice(i, 1);
       //audio.play();
     }
     if (birdYPos + 30 >= cvs.height - 95) {
