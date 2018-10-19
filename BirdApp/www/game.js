@@ -42,9 +42,21 @@ document.addEventListener("keydown", function() {
 
 function targetRand() {
   let targetArray = [carrot, cake, cabbage];
+  //setTimeout()
   return targetArray[Math.floor(Math.random() * targetArray.length)];
 }
 var targets = [targetRand()];
+
+function checkLive() {
+  var lives = document.getElementById("lives");
+  if (lives.querySelectorAll(".live").length > 0) {
+    var elem = lives.querySelector(".live");
+    elem.parentNode.removeChild(elem);
+  } else if (lives.querySelectorAll(".live").length == 0) {
+    alert("Game Over :(");
+    location.reload();
+  }
+}
 
 function draw() {
   ctx.drawImage(bg, 0, 0);
@@ -53,12 +65,16 @@ function draw() {
   for (let i = 0; i < target.length; i++) {
     ctx.drawImage(targets[i], target[i].x, target[i].y, 35, 35);
     target[i].x -= targetSpeed;
-    if (target[i].x == 450) {
+    if (target[i].x == 450 && target.length < 4) {
       target.push({
         x: cvs.width,
         y: Math.floor(Math.random() * 500) + 1
       });
       targets.push(targetRand());
+    }
+
+    if (target[i].x == 0 || target.length == 0) {
+      this.checkLive();
     }
 
     if (
@@ -68,21 +84,28 @@ function draw() {
       birdYPos <= target[i].y + 35
     ) {
       points++;
-      //target[i].x = -1000;
-      //target[i].y = -1000;
+      target[i].x = cvs.width+1000;
+      target[i].y = Math.floor(Math.random() * 500) + 1;
+      target.push({
+        x: cvs.width,
+        y: Math.floor(Math.random() * 500) + 1
+      });
+      targets.push(targetRand());
       //target.splice(i, 1);
       //audio.play();
     }
-    if (birdYPos + 30 >= cvs.height - 95) {
-      location.reload();
+    if (birdYPos + 30 >= cvs.height - 85) {
+      birdYPos -= 400;
+      this.checkLive();
     }
   }
 
   birdYPos += grav;
   ctx.fillStyle = "#fff";
   ctx.font = "48px";
-  ctx.fillText("Points " + points, 10, 500);
-  2;
+  ctx.fillText("Points " + points, 10, 580);
+  ctx.fillText(`Array Length: ${target.length}`, 60, 580);
+  ctx.fillText(`Pos Length: ${targets.length}`, 150, 580);
   requestAnimationFrame(draw);
 }
 cabbage.onload = draw();
